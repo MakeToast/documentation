@@ -99,7 +99,7 @@ function infiniteLoop(): never{
 ## type assertions
 - type casting과 같은 의미로 사용
 - 실제 특별한 체크작업이나 데이터 재구조화 작업 발생하지 않는다.(TypeScript가 따로 검증하지 않는다.)
--`<>` 과 `as` syntax를 이용하여 나타냄
+- `<>` 과 `as` syntax를 이용하여 나타냄
 - data type `any`와 함께 사용되는 경우가 많으며 데이터 타입을 한정지어서 사용할 수 있도록 도와준다. 
 ```
 let myVar: any = "Hello World";
