@@ -31,3 +31,4 @@ ng serve
 __http://localhost:4200__
 - `--o` 를 이용하여 `ng serve`를 실행시키면 default browser를 실행시켜서 해당 URL에 접속해 결과를 쉽게 확인 가능
 
+[reference](https://moon9342.github.io/angular-lecture-development-environment)
