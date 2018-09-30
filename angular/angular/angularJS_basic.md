@@ -20,7 +20,7 @@ HTML 뒷단에 위치하고 HTML View를 조절한다.
 비지니스 로직을 구현하는데 사용한다. 
 
 - Service
-비지니스 로직인데 컨트롤러와 다르게 재사용 할 수 있는 비니지스 로직을 서비스라고 한다. 앵귤러에서는 싱글톤?으로 구현되어 있기 때문에 데이터를 관리용도로 사용하는 것이 좋다.
+비지니스 로직인데 컨트롤러와 다르게 재사용 할 수 있는 비니지스 로직을 서비스라고 한다. angular에서는 싱글톤?으로 구현되어 있기 때문에 데이터를 관리용도로 사용하는 것이 좋다.
 
 --------------------------------
 # To-Do 리스트 앱 만들기 - 컨트롤러
@@ -56,7 +56,7 @@ import angular from 'angular';
   }]);
 })();
 ```
-> var app = angular.module('todo', []); : app이라는 변수에 todo라는 앵귤러 모듈이 할당됨<br>
+> var app = angular.module('todo', []); : app이라는 변수에 todo라는 angular 모듈이 할당됨<br>
 > app.controller('TodoCtrl', ['$scope',function($scope) :컨테이너 만들기 -> 모듈은 큰 컨테이너, 모듈에는 컨트롤러 서비스 등이 있다.<br>
 > $scope : 컨트롤러와 html간의 연결고리 같은 역할을 한다.
  
@@ -523,7 +523,112 @@ $scope.add = functiong(newTodoTitle){
 ```
 ## todoStroage: localStorage
 
-## todoStorage: update()
+- 실제 데이터를 메모리 상에 저장한다.
+- 브라우저를 refresh를 하게 되면 데이터가 초기화 된다. 
 
-------------------------
-# 마무리
+### localStroage
+- key, value 저장소
+
+자바스크립트에서는 localStorage라는 함수를 사용할 수 있다.
+- localStroage.setItem(key, value);
+- localStroage.getItem(key); // value, localStorage[key] 접근 가능
+- 입력은 무조건 string으로 처리됨(정수나, boolean 값으로 저장 불가)
+- localStorage.length
+- localStorage.key(value); // key
+- 최대 약 5mb 용량
+
+- 크롬은 SQLite 사용함
+- 영구 보관
+- sessionStorage는 새 탭, 새 윈도우로 범위가 제한된다는 점이 localStorage와 차이점
+
+- services.js
+```
+angular.module('todo').factory('todoStorage', function(){
+  var TODO_DATA = 'TODO_DATA';
+  var storage = {
+    todos: [],
+    // private method
+    _saveToLocalStorage: function(data){
+      localStroage.setItem(TODO_DATA, JSON.stringify(data));
+    },
+
+    // private method
+    _getFromLocalStrorage: function(){
+      return JSON.parse(localStorage.getItem(TODO_DATA)) || [];
+    },
+
+    get: function(){
+      angular.copy(storage._getFromLocalStrorage(), storage.todos)
+      return storage.todos;
+    },
+
+    remove: function(todo){
+      // find todo indexin todos
+      var idx = storage.todos.findIndex(function(item){
+        return item.id === todo.id;
+      })
+
+      // remove from todos
+      if(idx > -1)
+      {
+        storage.todos.splice(idx, 1)
+      }
+    },
+
+    add: function(newTodoTitle){
+      // create new todo
+      var newTodo = {
+        title: newTodoTitle,
+        completed: false,
+        createdAt: Date.now()
+      };
+      // push into todos
+      storage.todos.push(newTodo);
+      storage._saveToLocalStorage(storage.todos);
+    }  
+
+  }
+  return storage;
+});
+```
+- remove 함수에 추가해서 삭제 데이터에 저장하기
+```
+remove: function(todo){
+      // find todo indexin todos
+      var idx = storage.todos.findIndex(function(item){
+        return item.id === todo.id;
+      })
+
+      // remove from todos
+      if(idx > -1)
+      {
+        storage.todos.splice(idx, 1)
+        storage._saveToLocalStorage(storage.todos);
+      }
+    },
+```
+
+## todoStorage: update()
+- 데이터 업데이트 로직 만들기
+1. 체크박스 표시
+2. 텍스트 인풋 필드 변경
+- todoItem.tpl.html에 ng-click 설정
+```
+<input type="checkbox" ng-model="todo.completed" ng-click="update()">
+```
+- controllers.js에 update() 함수 구현
+```
+$scope.update = function(){
+    todoStorage.update();
+}
+```
+- services.js에 update() 함수 구현
+```
+update: function(){
+    storage._saveToLocalStorage(storage.todos);
+} 
+```
+- angular에서는 텍스트 필드에서 포커스아웃하게 되면 blur가 되는데 이 때 ng-blur를 통해 핸들러를 설정할 수 있다.
+```
+<input type="text" ng-model="todo.title" ng-blur="update()">
+```
