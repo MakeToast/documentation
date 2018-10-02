@@ -269,3 +269,4 @@ export class DetailBoxComponent implements OnInit {
 
 }
 ```
+[reference](https://moon9342.github.io/angular-lecture-databinding)
