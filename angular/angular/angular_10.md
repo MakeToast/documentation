@@ -199,5 +199,5 @@ export class SearchBoxComponent implements OnInit {
     * Stateless Component : Dumb Component라고 불리며 단지 상태 정보를 참조만 해서 이용할 수 있다.
 
 - `@Input decorator`를 이용하면 부모 Component에서 자식 Component에게 데이터를 전달 할 수 있지만 그 반대는 허용되지 않는다. 이 문제를 위해 `@Output decorator`를 사용할 수 있다.
- 
+
 [reference](https://moon9342.github.io/angular-lecture-data-share-1)
