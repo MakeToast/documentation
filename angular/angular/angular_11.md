@@ -148,3 +148,5 @@ export class BookSearchMainComponent implements OnInit {
   }
 }
 ```
+
+[reference](https://moon9342.github.io/angular-lecture-data-share-2)
