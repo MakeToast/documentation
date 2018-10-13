@@ -107,3 +107,38 @@ TREE-INSERT(T, z) // T : tree, z : insert node
             then left[y] <- z
         else right[y] <- z
 ```
+
+- DELETE
+* Case 1 : 자식노드가 없는 경우 - 그냥 삭제
+* Case 2 : 자식노드가 1개인 경우 - 자신의 자식노드를 원래 자신의 위치로
+* Case 3 : 자식노드가 2개인 경우 
+    * 1. successor의 값을 삭제하려는 노드로 copy
+    * 2. successor 노드 대신 삭제한다(Case 1 or 2에 해당)
+* 시간복잡도 O(h)
+```
+TREE-DELETE(T, z) // T : tree, z : delete node
+    if left[z] == NULL or right[z] == NULL
+        then y <- z
+        else y <- TREE-SUCCESSOR(z)
+    if left[y] != NULL
+        then x <- left[y]
+        else x <- right[y]
+    if x != NULL
+        then p[x] <- p[y]
+    if p[y] == NULL
+        then root[T] <- x
+        else if y == left[p[y]]
+            then left[p[y]] <- x
+            else right[p[y]] <- x
+    if y != z
+        then key[z] <- key[y]
+            copy y's satelite data into z
+    return y
+```  
+
+- BST
+* 각종 연산의 시간복잡도 O(h)
+* 그러나, 최악의 경우 트리의 높이 h=O(n)
+* 균형잡힌(balanced) 트리
+    * 레드-블랙 트리 등
+    * 키의 삽입이나 삭제시 추가로 트리의 균형을 잡아줌으로써 높이를 O(log2n)으로 유지
