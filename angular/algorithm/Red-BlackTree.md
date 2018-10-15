@@ -48,3 +48,63 @@ LEFT-ROTATE(T, x)
     left[y] <- x             // put x on y's left
     p[x] <- y
 ```
+
+- INSERT
+* 보통의 BST에서처럼 노드를 INSERT한다.
+* 새로운 노드 z를 red노드로 한다.
+* RB-INSERT-FIXUP을 호출한다.
+
+```
+RB-INSERT(T,z)  // T : red-black tree, z : insert node
+    y <- nil[T]
+    x <- root[T]
+    while x != nil[T]
+        do y <- x
+            if key[z] < key[x]
+                then x <- left[x]
+                else x <- right[x]
+    p[z] <- y
+    if y == nil[T]
+        then root[T] <- z
+        else if key[z] < key[y]
+            then left[y] <- z
+            else right[y]  <- z
+    left[z] <- nil[T]
+    right[z] <- nil[T]
+    color[z] <- RED
+    RB-INSERT-FIXUP(T, z)
+```
+
+- RB-INSERT-FIXUP
+* 위반될 가능성이 있는 조건들
+    * 1 조건. OK
+    * 2 조건. 만약 z가 루트노드라면 위반, 아니라면 OK.
+    * 3 조건. OK.
+    * 4 조건. z의 부모 p[z]가 red이면 위반.
+    * 5 조건. OK
+* Loop Invariant :
+    * z는 red노드
+    * 오직 하나의 위반만이 존재한다 :
+        * 조건 2: z가 루트노드이면서 red이거나 또는
+        * 조건 4: z와 그 부모 p[z]가 둘 다 red이거나.
+* 종료조건:
+    * 부모노드 p[z]가 black이되면 종료한다. 조건2가 위반일 경우 z를 블랙으로 바꿔주고 종료한다.
+```
+RB-INSERT-FIXUP(T, z)
+    while color[p[z]] == RED
+        do if p[z] == left[p[p[z]]]
+            then y <- right[p[p[z]]]
+                if color[y] == RED
+                    then color[p[z]] <- BLACK
+                        color[y] <- BLACK
+                        color[p[p[z]]] <- RED
+                        z <- p[p[z]]
+                    else if z == right[p[z]]
+                        then z <- p[z]
+                            LEFT-ROTATE(T, z)
+                        color[p[z]] <- BLACK
+                        color[p[p[z]]] <- RED
+                        RIGHT-ROTATE(T, p[p[z]])
+        else (same as then clause with "right" and "left" exchanged)
+    color[root[T]] <- BLACK
+```
