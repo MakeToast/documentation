@@ -11,43 +11,43 @@ def push(self, item) :
 ```
 - example
 
-    Data              Stack
-    | 1 |           |       |
-    | 2 |           |       |
-    | 3 |           |       |
-    | 4 |           |_______|
+    Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+    | 1 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+    | 2 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+    | 3 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+    | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
 
     * PUSH 1
 
-    Data              Stack
-                    |       |
-    | 2 |           |       |
-    | 3 |           |       |
-    | 4 |           | | 1 | |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 2 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 3 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
 
     * PUSH 2
 
-    Data              Stack
-                    |       |
-                    |       |
-    | 3 |           | | 2 | |
-    | 4 |           | | 1 | |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 3 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | |<br>
+        | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
 
     * PUSH 3
 
-    Data              Stack
-                    |       |
-                    | | 3 | |
-                    | | 2 | |
-    | 4 |           | | 1 | |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 3 | |<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | |<br>
+        | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
 
     * PUSH 4
 
-    Data              Stack
-                    | | 4 | |
-                    | | 3 | |
-                    | | 2 | |
-                    | | 1 | |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 4 | |<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 3 | |<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | |<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
 
 ## STACK OVERFLOW
 > 스택이 가득 찼을 때 또 다른 value를 넣으려고 하면 스택에 값을 담을 공간이 없다. 따라서 이 스택은 프로그램에 에러를 야기할 수 있다.
@@ -62,43 +62,44 @@ def pop(self) :
 ```
 
 - example
-                          Stack
-                        | | 4 | |
-                        | | 3 | |
-                        | | 2 | |
-                        | | 1 | |
+
+    Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+    |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 4 | |<br>
+    |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 3 | |<br>
+    |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | |<br>
+    |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
 
     * POP
 
-        Data              Stack
-                        |       |
-                        | | 3 | |
-                        | | 2 | |
-        | 4 |           | | 1 | |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 3 | |<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | |<br>
+        | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
 
     * POP
 
-        Data              Stack
-                        |       |
-                        |       |
-        | 3 |           | | 2 | |
-        | 4 |           | | 1 | |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 3 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 2 | |<br>
+        | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
 
     * POP
 
-        Data              Stack
-                        |       |
-        | 2 |           |       |
-        | 3 |           |       |
-        | 4 |           | | 1 | |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+        |&nbsp; &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 2 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 3 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| | 1 | |
     
     * POP
 
-        Data              Stack
-        | 1 |           |       |
-        | 2 |           |       |
-        | 3 |           |       |
-        | 4 |           |       |
+        Data&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack<br>
+         | 1 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 2 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 3 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
+        | 4 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;|<br>
 
 ## STACK UNDERFLOW
 > 스택에 아무런 값이 없는데 값을 빼내려고 하면 에러가 난다.
