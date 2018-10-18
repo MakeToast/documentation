@@ -204,3 +204,100 @@ def __search_node(self, cur, item) :
             ( 10 ) ( 19 ) ( 31 ) ( 42 )
                           /          \
                       ( 30 )         ( 45 )
+
+## PRE ORDER TRAVERSE
+
+1. Vist the root
+2. Traverse the left subtree
+3. Traverse the right subtree
+
+```
+def preorder_traverse(self) :
+    if self.head is not None :
+        self.__preorder(self.head)
+
+def __preorder(self, cur) :
+    self.preorder_list.append(cur.val)
+    print(cur.val)
+    if cur.left is not None :
+        self.__preorder(cur.left)
+    if cur.right is not None :
+        self.__preorder(cur.right)
+```
+- example
+
+    * BST
+
+                     ( 5 )
+                    /     \
+                ( 3 )     ( 7 )
+                /   \      
+             ( 1 ) ( 4 ) 
+
+    * result : 5 3 1 4 7
+
+## IN ORDER TRAVERSE : 정렬
+
+1. Vist left
+2. Vist parent
+3. Vist right
+
+```
+def inorder_traverse(self) :
+    if self.head is not None :
+        self.__inorder(self.head)
+
+def __inorder(self, cur) :
+    if cur.left is not None :
+        self.__inorder(cur.left)
+
+    self.inorder_list.append(cur.val)
+    print(cur.val)
+
+    if cur.right is not None :
+        self.__inorder(cur.right)
+```
+- example
+
+    * BST
+
+                     ( 5 )
+                    /     \
+                ( 3 )     ( 7 )
+                /   \      
+             ( 1 ) ( 4 ) 
+
+    * result : 1 3 4 5 7
+
+## POST ORDER TRAVERSE
+
+1. Vist left
+2. Vist right
+3. Vist parent
+
+```
+def postorder_traverse(self) :
+    if self.head is not None :
+        self.__postorder(self.head)
+
+def __postorder(self, cur) :
+    if cur.left is not None :
+        self.__postorder(cur.left)
+    
+    if cur.right is not None :
+        self.__postorder(cur.right)
+
+    self.postorder_list.append(cur.val)
+    print(cur.val)
+```
+- example
+
+    * BST
+
+                     ( 5 )
+                    /     \
+                ( 3 )     ( 7 )
+                /   \      
+             ( 1 ) ( 4 ) 
+
+    * result : 1 4 3 7 5
