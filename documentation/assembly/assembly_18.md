@@ -1,0 +1,56 @@
+# adc, sbb
+- adc : add에서 carry값을 이용한다.
+- example
+    - mov eax, 0
+        - eax : 0
+    - add eax, 8
+        - eax : 8
+    - add eax, FFFFFFF9
+        - eax : 1
+        - C = 1
+    - adc eax, 1
+        - eax : 1 + 1 + 1(carry flag 값) = 3
+- add 명령이 최대 32비트, 4바이트까지 덧셈을 이용할 수 있다.
+- 8바이트끼리 덧셈을 하고 싶다면 adc를 이용하면 된다.
+- example : 4byte 끼리 더함
+    - mov dword ptr ds:[402000], 18
+    - mov dword ptr ds:[402004], 20
+    - mov eax, dword ptr ds:[402000]
+    - add eax, dword ptr ds:[402004]
+        - [402004] : 38
+    - mov dword ptr ds:[402008], eax
+        - [402008] : 38
+- example : 8byte 끼리 더함
+    - mov dword ptr ds:[402000], 2A05F200
+        - [402000] : 00 F2 05 2A
+    - mov dword ptr ds:[402004], 1
+        - [402004] : 01 00 00 00
+    - mov dword ptr ds:[402008], 65A0BC00
+        - [402008] : 00 BC A0 65
+    - mov dword ptr ds:[40200C], 1
+        - [40200C] : 01 00 00 00
+    - mov eax, dword ptr ds:[402000]
+    - add eax, dword ptr ds:[402008]
+        - eax : 8FA6AE00
+    - mov dword ptr ds:[402010], eax
+        - [402010] : 00 AE A6 8F
+    - mov eax, dword ptr ds:[402004]
+    - add eax, dword ptr ds:[40200C]
+        - eax : 000000002
+    - mov dword ptr ds:[402014], eax
+        - [402014] : 02 00 00 00
+- sbb : sub에서 carry값을 이용한다.
+- example 
+    - mov dword ptr ds:[402000], 20000000
+    - mov dword ptr ds:[402004], 2
+    - mov dword ptr ds:[402008], 90000000
+    - mov dword ptr ds:[40200C], 1
+    - mov eax, dword ptr ds:[402000]
+    - sub eax, dword ptr ds:[402008]
+        - carry 값을 1로 세팅한다
+    - mov dword ptr ds:[402010], eax
+    - mov eax, dword ptr ds:[402004]
+    - sbb eax, dword ptr ds:[40200c]
+        - carry 값을 빼준다
+    - mov dword ptr ds:[402014], eax
+
