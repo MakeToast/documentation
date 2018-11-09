@@ -54,3 +54,5 @@ def contour() :
 - cv2.CHAIN_APPROX_SIMPLE과 cv2.CHAIN_APPROX_NONE 차이
     - cv2.CHAIN_APPROX_SIMPLE : contour의 수평, 수직, 대각선 방향의 직전상에 놓은 점들을 모두 버리고 끝 점들만 취한다.
     - cv2.CHAIN_APPROX_NONE : contour 상의 모든 점을 취한다
+
+[reference](http://blog.naver.com/PostView.nhn?blogId=samsjang&logNo=220516697251&parentCategoryNo=&categoryNo=66&viewDate=&isShowPopularPosts=false&from=postView)
