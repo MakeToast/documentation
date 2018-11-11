@@ -126,3 +126,5 @@ def contour() :
     - True : 세 번째 인자가 True이면 폐곡선, False이면 양끝이 열려있는 곡선 임을 의미
     - __epsilon의 크기에 따라 근사되는 결과가 다르게 나온다.__
         - epsilon 값이 작으면 오리지널 Contour과 비슷한 결과 도출, 크면 오리지널 Contour와 차이가 있는 결과 나옴. 도형의 꼭지점의 개수가 epsilon의 크기가 크면 줄어든다.
+
+[reference](http://blog.naver.com/PostView.nhn?blogId=samsjang&logNo=220516822775&parentCategoryNo=&categoryNo=66&viewDate=&isShowPopularPosts=false&from=postView)
