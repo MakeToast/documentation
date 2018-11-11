@@ -88,4 +88,32 @@ def contour_approx() :
     cv2.waitKey(0)
     cv2.destroyAllWindows()   
 
-contour_approx()
+def contour_iteration() :
+    img = cv2.imread('src/color_origin.jpg')
+    
+    imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    ret, thr = cv2.threshold(imgray, 127, 255, 0)
+    _, contours, _ = cv2.findContours(thr, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+  
+    max = 0
+    val = 0
+    for i in range(len(contours)) :
+        cnt = contours[i]
+        area = cv2.contourArea(cnt)
+        perimeter = cv2.arcLength(cnt, True)
+        print('contour 면적 : ', area)
+        print('contour 길이 : ', perimeter)
+        if max < area :
+            max = area
+            val = i
+        #cv2.drawContours(img, [cnt], 0, (255, 255, 0), 1)
+        #cv2.imshow('contour', img)
+        #cv2.waitKey(0)
+    print(max, val)
+    cnt = contours[val]
+    cv2.drawContours(img, [cnt], 0, (255, 255, 0), 1)
+    cv2.imshow('contour', img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+contour_iteration()
