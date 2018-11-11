@@ -81,21 +81,14 @@ def contour_approx() :
     cv2.drawContours(img2, [approx2], 0, (0, 255, 0), 3)
 
     
-    
     cv2.imshow('Approx1', img)
     cv2.imshow('Approx2', img2)
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()   
 
-def contour_iteration() :
-    img = cv2.imread('src/color_origin.jpg')
+def contour_iteration(contours) :
     
-    imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    ret, thr = cv2.threshold(imgray, 127, 255, 0)
-    _, contours, _ = cv2.findContours(thr, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-  
     max = 0
     val = 0
     for i in range(len(contours)) :
@@ -107,13 +100,29 @@ def contour_iteration() :
         if max < area :
             max = area
             val = i
-        #cv2.drawContours(img, [cnt], 0, (255, 255, 0), 1)
-        #cv2.imshow('contour', img)
-        #cv2.waitKey(0)
+   
     print(max, val)
-    cnt = contours[val]
-    cv2.drawContours(img, [cnt], 0, (255, 255, 0), 1)
-    cv2.imshow('contour', img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-contour_iteration()
+    return val
+    
+
+def contour_compare() :
+
+    origin_img = cv2.imread('src/original.png', cv2.IMREAD_GRAYSCALE)
+    origin_img = cv2.resize(origin_img, (740, 440))
+    _, thr = cv2.threshold(origin_img, 127, 255, 0)
+    _, origin_contours, _ = cv2.findContours(thr, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    origin_max = contour_iteration(origin_contours)
+    
+
+
+    img = cv2.imread('src/color_origin.jpg')
+    imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, thr = cv2.threshold(imgray, 127, 255, 0)
+    _, contours, _ = cv2.findContours(thr, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    max = contour_iteration(contours)
+
+    ret = cv2.matchShapes(origin_contours[origin_max], contours[max], 1, 0.0)
+    print(ret)
+
+
+contour_compare()
