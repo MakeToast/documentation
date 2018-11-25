@@ -1,0 +1,4 @@
+/Users/choeyujin/documentation/documentation/C#/Calculator/obj/Debug/netcoreapp2.1/Calculator.csprojAssemblyReference.cache
+/Users/choeyujin/documentation/documentation/C#/Calculator/obj/Debug/netcoreapp2.1/Calculator.csproj.CoreCompileInputs.cache
+/Users/choeyujin/documentation/documentation/C#/Calculator/obj/Debug/netcoreapp2.1/Calculator.AssemblyInfoInputs.cache
+/Users/choeyujin/documentation/documentation/C#/Calculator/obj/Debug/netcoreapp2.1/Calculator.AssemblyInfo.cs
