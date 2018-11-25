@@ -1,0 +1,11 @@
+/Users/choeyujin/documentation/documentation/C#/Example/bin/Debug/netcoreapp2.1/Example.deps.json
+/Users/choeyujin/documentation/documentation/C#/Example/bin/Debug/netcoreapp2.1/Example.runtimeconfig.json
+/Users/choeyujin/documentation/documentation/C#/Example/bin/Debug/netcoreapp2.1/Example.runtimeconfig.dev.json
+/Users/choeyujin/documentation/documentation/C#/Example/bin/Debug/netcoreapp2.1/Example.dll
+/Users/choeyujin/documentation/documentation/C#/Example/bin/Debug/netcoreapp2.1/Example.pdb
+/Users/choeyujin/documentation/documentation/C#/Example/obj/Debug/netcoreapp2.1/Example.csprojAssemblyReference.cache
+/Users/choeyujin/documentation/documentation/C#/Example/obj/Debug/netcoreapp2.1/Example.csproj.CoreCompileInputs.cache
+/Users/choeyujin/documentation/documentation/C#/Example/obj/Debug/netcoreapp2.1/Example.AssemblyInfoInputs.cache
+/Users/choeyujin/documentation/documentation/C#/Example/obj/Debug/netcoreapp2.1/Example.AssemblyInfo.cs
+/Users/choeyujin/documentation/documentation/C#/Example/obj/Debug/netcoreapp2.1/Example.dll
+/Users/choeyujin/documentation/documentation/C#/Example/obj/Debug/netcoreapp2.1/Example.pdb
