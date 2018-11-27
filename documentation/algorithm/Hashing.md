@@ -5,7 +5,7 @@
     - 해쉬 함수(hash function) h를 사용하여 키 k를 T[h(k)]에 저장
         - h : U -> {0, 1, ..., m-1}, 여기서 m은 테이블의 크기, U는 모든 가능한 키들의 집합
         - 키 k가 h(k)로 해싱되었다고 말한다.
-        ![HASH TABLE](https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjVga2Rh_XeAhXq54MKHWXkDacQjRx6BAgBEAU&url=http%3A%2F%2Fnew93helloworld.tistory.com%2F146&psig=AOvVaw07vSZWTV7CIKXXri_47HDi&ust=1543424682294841)
+![HASH TABLE](https://t1.daumcdn.net/cfile/tistory/2744703859117EC226)
     - 해쉬 함수의 예
         - 모든 키들을 자연술고 가정. 어떤 데이터든지 자연수로 해석하는 것이 가능
         - 예 : 문자열
