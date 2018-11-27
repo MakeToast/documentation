@@ -108,3 +108,99 @@ RB-INSERT-FIXUP(T, z)
         else (same as then clause with "right" and "left" exchanged)
     color[root[T]] <- BLACK
 ```
+
+- DELETE
+    - 보통의 BST에서처럼 DELETE한다.
+    - 실제로 삭제된 노드 y가 red였으면 종료.
+    - y가 black이었을 경우 RB-DELETE-FIXUP을 호출한다.
+
+```
+RB-DELETE(T, z)
+    if left[z] == nil[T] or right[z] == nil[T]
+        then y <- z
+        else y <- TREE_SUCCESSOR(z)
+    if left[y] != nil[T]
+        then x <- left[y]
+        else x <- right[y]
+    p[x] <- p[y]
+    if p[y] == nil[T]
+        then root[T] <- x
+        else if y == left[p[y]]
+            then left[p[y]] <- x
+            else right[p[y]] <- x
+    if y != z
+        then key[z] <- key[y]
+            copy y's satellite data into z
+    if color[y] == BLACK # x는 y가 자식이 있었을 경우 그 자식노드, 없었을 경우 NIL노드. 두 경우 모두 p[x]는 원래 p[y]였던 노드
+        then RB-DELETE-FIXUP(T, x)
+    return y
+```
+
+- RB-DELETE-FIXUP(T, x)
+    1. OK.
+    2. y가 루트였고 x가 red인 경우 위반
+    3. OK.
+    4. p[y]와 x가 모두 red일 경우 위반
+    5. 원래 y를 포함했던 모든 경로는 이제 black노드가 하나 부족
+        1) 노드 x에 "extra black"을 부여해서 일단 조건 5 만족
+        2) 노드 x는 "double black" 혹은 "red & black"
+
+    - 아이디어
+        - extra balck을 트리의 위쪽으로 올려보냄
+        - x가 red & black상태가 되면 그냥 black노드로 만들고 끄탬
+        - x가 루트가 되면 그냥 extra black을 제거
+    - Loop Invariant
+        - x는 루트가 아닌 double-black노드
+        - w는 x의 형제노드
+        - w는 NIL 노드가 될 수 없음(아니면 x의 부모에 대해 조건 5가 위반)
+
+    - 경우 1 : w가 red인 경우
+        - w의 자식들은 black
+        - w를 black으로, p[x]를 red로
+        - p[x]에 대해서 left-rotation적용
+        - x의 새로운 형제노드는 원래 w의 자식노드, 따라서 black노드
+        - 경우 2, 3 혹은 4에 해당
+    - 경우 2 : w는 black, w의 자식들도 black
+        - x의 extra-black을 뺏고, w를 red로 바꿈.
+        - p[x]에게 뺏은 extra-black을 준다.
+        - p[x]를 새로운 x로 해서 계속.
+        - 만약 경우1에서 이 경우에 도달했다면 p[x]는 red였고, 따라서 새로운 x는 red&black이 되어서 종료
+    - 경우 3 : w는 black, w의 왼쪽자식이 red
+        - w를 red로, w의 왼자식을 black으로
+        - w에 대해서 right-rotation적용
+        - x의 새로운 형제 w는 오른자식이 red : 경우 4에 해당
+    - 경우 4 : w는 black, w의 오른쪽 자식이 red
+        - w의 색을 현재 p[x]의 색으로 (unknown color)
+        - p[x]를 black으로, w의 오른자식을 black으로
+        - p[x]에 대해서 left-rotation적용
+        - x의 extra-black을 제거하고 종료
+
+```
+RB-DELETE-FIXUP(T, x)
+    while x != root[T] and color[x] == BLACK
+        do if x == left[p[x]]
+            then w <- right[p[x]]
+                if color[w] == RED
+                    then color[w] <- BLACK                              // CASE 1
+                        color[p[x]] <- RED                              // CASE 1
+                        LEFT-ROTATE(T, p[x])                            // CASE 1
+                        w <- right[p[x]]                                // CASE 1
+                if color[left[w]] == BLACK and color[right[w]] == BLACK
+                    then color[w] <- RED                                // CASE 2
+                        x <- p[x]                                       // CASE 2
+                    else if color[right[w]] == BLACK                    // CASE 3
+                        then color[left[w]] <- BLACK                    // CASE 3
+                            color[w] <- RED                             // CASE 3
+                            RIGHT-ROTATE(T,w)                           // CASE 3
+                            w <- right[p[x]]                            // CASE 3
+                        color[w] <- color[p[x]]                         // CASE 4
+                        color[p[x]] <- BLACK                            // CASE 4
+                        color[right[w]] <- BLACK                        // CASE 4
+                        LEFT-ROTATE(T, p[x])                            // CASE 4
+                        x <- root[T]                                    // CASE 4
+        else (same as then clause with "right" and "left" exchanged)
+    color[x] <- BLACK
+```
+
+- BST에서의 DELETE : O(log2n)
+- RB-DELETE-FIXUP : O(log2n)
