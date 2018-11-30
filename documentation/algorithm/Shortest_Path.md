@@ -82,3 +82,86 @@ BELLMAN-FORD(G, w, s)
             then return FALSE
     return TRUE
 ```
+
+- Dijkstra의 알고리즘
+    - 음수 가중치가 없다고 가정
+    - s로부터의 최단경로의 길이를 이미 알아낸 노드들의 집합 S를 유지. 맨 처음엔 S = 공집합
+    - Loop invariant:
+        - u (S에 속하지 않는)인 각 노드 u에 대해서 d(u)는 이미 S에 속한 노드들만 거쳐서 s로부터 u까지 가는 최단경로의 길이
+    - 정리
+        - d(u) = min v(S에 속하지 않는) d(v)인 노드 u에 대해서, d(u)는 s에서 u까지의 최단경로의 길이이다.
+    - 증명
+        - s에서 u까지 다른 최단경로가 존재한다고 했을 때 d(v) >= d(u)이므로 모순.
+    - d(u)가 최소인 노드 u(S에 포함되지 않는) 를 찾고 ,S에 u를 추가
+    - S가 변경되었으므로 다른 노드들의 d(v) 값을 갱신
+    - d(v) = min{d(v), d(u) + w(u, v)}
+    - 즉, 에지 (u, v)에 대해서 relaxation하면 Loop Invariant가 계속 유지됨.
+
+    - 시간복잡도 O(n^2)
+```
+Dijkstra(G,w,s)
+    for each u(V에 포함된) do
+        d[u] <- 무한대
+        ㅠ[u] <- NIL
+    end.
+    S <- {공집합}
+    d[s] <- 0
+    while |S| < n do // n-1번 반복
+        find u (S에 속하지 않는) with the minimum d[u] value; // 최소값 찾기 O(n)
+        S <- S 와 {u} 의 합집합
+        for each v (S에 속하지 않는) adjacent to u do // degree(u) = O(n)
+            if d[v] > d[u] + w(u, v) then
+                d[v] <- d[u] + w(u, v)
+                ㅠ[v] <- u
+            end.
+        end.
+    end.
+```
+### all-to-all 최단경로 알고리즘
+- Floyd-Warshall Algorithm
+    - 가중치 방향 그래프 G = (V, E), V = {1, 2, 3, ..., n}
+    - 모든 노드 쌍들간의 최단경로의 길이를 구함
+    - dk[i, j]
+        - 중간에 노드 집합 {1, 2, 3, ..., k}에 속한 노드들만 거쳐서 노드 i에서 j까지 가는 최단경로의 길이
+    - 중간에 노드집합 {1,2, ..., k}에 속한 노드들만 거쳐서 노드 i에서 j까지 가는 최단경로는 두가지 경우가 있다 : 노드 k를 지나는 경우와 지나지 않는 경우
+    ```
+    FloydWarshall(G)
+    {
+        for i <- 1 to n
+            for j <- 1 to n
+                d0[i, j] <- wij;
+        for k <- 1 to n
+            for i <- 1 to n
+                for j <- 1 to n
+                    dk[i,j] <- min{dk-1[i,j], dk-1[i, k]+dk-1[k,j]};
+    }
+    ```
+    - 시간복잡도 : O(n^3) -> 굳이 3차원 배열을 쓸 필요가 없다!
+    ```
+     FloydWarshall(G)
+    {
+        for i <- 1 to n
+            for j <- 1 to n
+                d[i, j] <- wij;
+        for k <- 1 to n
+            for i <- 1 to n
+                for j <- 1 to n
+                    d[i,j] <- min{d[i,j], d[i, k]+d[k,j]};
+    }
+    ```
+    - 경로 찾기
+    ```
+    FloydWarshall(G)
+    {
+        for i <- 1 to n
+            for j <- 1 to n
+                d[i, j] <- wij;
+                ㅠ[i, j] <- NIL;
+        for k <- 1 to n
+            for i <- 1 to n
+                for j <- 1 to n
+                    if d[i, j] > d[i, k]+d[k, j] then
+                        d[i, j] = d[i, k]+d[k, j] 
+                        ㅠ[i, j] = k;
+    }
+    ```
