@@ -35,3 +35,11 @@
     - 1. 파일의 첫 byte를 읽고 이것을 start_symbol이라고 한다.
     - 2. 파일의 끝에 도달하거나 혹은 start_symbol와 다른 byte가 나올 때까지 연속해서 읽는다. 현재까지 읽은 byte수를 count라고 하자. 이 예에서는 지금 byte=4이다.
     - 3. (start_symbol, count-1)인 run이 하나 인식되었다. 이 run을 저장하고 가장 마지막에 읽은 byte를 start_symbol로, count=1로 reset하고 다시 반복한다.
+- 제 2단계 : Huffman Tree
+    - Huffman Coding
+        - Huffman coding 알고리즘은 `트리들의 집합`을 유지하면서
+        - 매 단계에서 `가장 frequency가 작은 두 트리`를 찾아서
+        - 두 트리를 하나로 합친다.
+        - 이런 연산에 가장 적합한 자료구조는 최소 힙(minimum heap)이다.
+        - 즉 힙에 저장된 각각의 원소들은 하나의 `트리`이다 (노드가 아니라).
+    
