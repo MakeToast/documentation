@@ -173,3 +173,37 @@
                 return L[n][n];
             }
             ```
+
+### 동적계획법
+1. 일반적으로 최적화문제(optimisation problem) 혹은 카운팅(counting) 문제에 적용됨
+2. 주어진 문제에 대한 순환식을 정의한다.
+3. 순환식을 memoization 혹은 bottom-up 방식으로 푼다.
+- `subproblem들을 풀어서` 원래 문제를 푸는 방식. 그런 의미에서 분할정복법과 공통성이 있음
+- 분할 정복법에서는 분할된 문제들이 서로 disjoint하지만 동적계획법에서는 그렇지 않음
+- 즉 `서로 overlapping하는 subproblem들을 해결`함으로써 원래 문제를 해결
+
+- 분할정복법 vs. 동적계획법
+    - 분할정복법 : quicksort의 경우
+        - pivot을 기준으로 분할된 두 subproblem은 서로 disjoint하다.
+    - 동적계획법 : 행렬문제의 경우
+        - 각각의 최적 해는 그 전의 최적 해를 조합해서 문제를 해결한다.
+
+### Optimal Substructure
+- 어떤 문제의 최적해가 그것의 `subproblem들의 최적해`로부터 효율적으로 구해질 수 있을 떄 그 문제는 `optimal substructure를 가진다`고 말한다.
+- 분할정복법, 탐욕적기법, 동적계획법은 모두 문제가 가진 이런 특성을 이용한다. 
+
+### Optimal Substructure를 확인하는 질문
+- "최적해의 일부분이 그 부분에 대한 최적해인가?"
+- 최단경로(shortest-path) 문제
+    - s - v - u : 이 경로가 s에서 u까지의 최단경로라면 이 경로는 s에서 v까지의 최단 경로이다.
+- 순환식은 optimal substructure를 표현한다.
+    - d[u] = min ( d[v] + w(v, u) )
+        - d[u] : u까지 가는 최단경로의 길이
+        - d[v] : u에 인접한 모든 정점 v에 대해서 v까지 가는 최단경로의 길이
+        - w(v, u) : 에지 (v, u)의 가중치
+- 최장경로(Longest-Path) 문제
+    - 노드를 중복 방문하지 않고 가는 가장 긴 경로
+    - optimal substrcutre를 가지는가?
+    - d[u] != max ( d[v] + w(v, u) )
+        - u까지 가는 최장경로가 v를 지난다고 하더라도 그 경로상에서 v까지 가는 경로가 반드시 v까지 가는 최장경로가 아닐 수도 있으므로 이런 순환식은 성립하지 않는다.
+        
