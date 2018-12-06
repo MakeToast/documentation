@@ -257,3 +257,36 @@
         return m[1][n];
         ```
         - 시간복잡도 : O(n^3)
+### Longest Common Subsequence(LCS)
+- < bcdb >는 문자열 < abcbdab >의 subsequence이다.
+- < bca >는 문자열 < abcbdab >와 < bdcaba >의 common subsequence이다.
+- Longest common subsequence(LCS)
+    - common subsequence들 중 가장 긴 것 
+    - < bcba >는 < abcbdab >와 < bdcaba >의 LCS이다.
+- 순환식
+    - L[i, j] : 문자열 X = < x1x2...xi >와 Y = < y1y2...yj >의 LCS의 길이
+    - 경우 1 : xi = yj
+        - L[i, j] = L[i-1, j-1] + 1 
+    - 경우 2 : xi != yj
+        - L[i, j] = max(L[i-1, j], L[i, j-1])
+    ```
+    int lcs(int m, int n) // m : length of X, n : length of Y
+    {
+        for(int i = 0; i <= m; i++)
+            c[i][0] = 0;
+        for(int j = 0; j <= n; j++)
+            c[0][j] = 0;
+        for(int i = 0; i <= m; i++)
+        {
+            for(j = 0; j <= n; j++)
+            {
+                if(x[i] == y[j])
+                    c[i][j] = c[i-1][j-1] + 1;
+                else
+                    c[i][j] = Math.max(c[i-1][j], c[i][j-1]);
+            }
+        }
+        return c[m][n]
+    }
+    ```
+    - 시간복잡도 : O(mn)
